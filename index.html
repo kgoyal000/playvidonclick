@@ -1,0 +1,96 @@
+<html>
+<head>
+<style>
+.img-window {
+    width: 90vw;
+    height: 92vh;
+    background-color: rgba(0,0,0,.8);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.img-window img {
+   max-height: 80vh;
+   max-width: 80vw;
+   z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+</style>
+
+</head>
+<body>
+<div class="container-gallery" id="portfolio">
+        <h1>Portfolio gallery</h1>
+        <div class="wrapper-gallery" id="index-gallery">
+            <div class="gallery-img img1">
+                <div><a href="#">First Image</a></div>
+                <video class="hidden" width="1000" controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                 </video>
+            </div>
+            <div class="gallery-img img2">
+                <div><a href="#">Second image</a></div>
+            </div>
+            <div class="gallery-img img3">
+                <div><a href="#">Third image</a></div>
+            </div>
+            <div class="gallery-img img4">
+                <div><a href="#">Fourth image</a></div>
+            </div>
+            <div class="gallery-img img5">
+                <div><a href="#">Fifth image</a></div>
+            </div>
+            <div class="gallery-img img6">
+                <div><a href="#">Sixth image</a></div>
+            </div>
+            <div class="gallery-img img7">
+                <div><a href="#">Seventh image</a></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    let galleryImages = document.querySelectorAll('.gallery-img');
+let video = document.querySelector('video');
+let getLatestOpenedImg;
+
+if(galleryImages) {
+    galleryImages.forEach(function(image, index) {
+        image.onclick = function(e) {
+            e.preventDefault();
+
+            getLatestOpenedImg = index + 1;
+            let container = document.body;
+            let newVidWindow = document.createElement("div");
+            container.appendChild(newVidWindow);
+            newVidWindow.setAttribute("class", "img-window");
+            newVidWindow.setAttribute("onclick", "closeImg()");
+
+            newVidWindow.appendChild(video);
+            video.classList.remove('hidden');
+            video.classList.add('show');
+            video.play();
+        }
+    });
+}
+
+
+function closeImg() {
+    document.querySelector(".img-window").remove();
+} 
+</script>
+    </body>
+    </html>
